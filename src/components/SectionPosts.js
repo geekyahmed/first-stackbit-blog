@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import moment from 'moment-strftime';
 
-import {getPages, Link, safePrefix} from '../utils';
+import {getPages, Link, withPrefix} from '../utils';
 import CtaButtons from './CtaButtons';
 
 export default class SectionPosts extends React.Component {
@@ -21,10 +21,10 @@ export default class SectionPosts extends React.Component {
                   <article key={post_idx} className="post post-card">
                     <div className="post-inside">
                       {_.get(post, 'frontmatter.thumb_img_path', null) && (
-                      <Link className="post-thumbnail" to={safePrefix(_.get(post, 'url', null))}><img src={safePrefix(_.get(post, 'frontmatter.thumb_img_path', null))} alt={_.get(post, 'frontmatter.title', null)} /></Link>
+                      <Link className="post-thumbnail" to={withPrefix(_.get(post, 'url', null))}><img src={withPrefix(_.get(post, 'frontmatter.thumb_img_path', null))} alt={_.get(post, 'frontmatter.title', null)} /></Link>
                       )}
                       <header className="post-header">
-                        <h3 className="post-title"><Link to={safePrefix(_.get(post, 'url', null))} rel="bookmark">{_.get(post, 'frontmatter.title', null)}</Link></h3>
+                        <h3 className="post-title"><Link to={withPrefix(_.get(post, 'url', null))} rel="bookmark">{_.get(post, 'frontmatter.title', null)}</Link></h3>
                       </header>
                       {_.get(post, 'frontmatter.excerpt', null) && (
                       <div className="post-content">

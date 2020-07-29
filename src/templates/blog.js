@@ -4,7 +4,7 @@ import moment from 'moment-strftime';
 import {graphql} from 'gatsby';
 
 import {Layout} from '../components/index';
-import {getPages, Link, safePrefix} from '../utils';
+import {getPages, Link, withPrefix} from '../utils';
 
 // this minimal GraphQL query ensures that when 'gatsby develop' is running,
 // any changes to content files are reflected in browser
@@ -30,12 +30,12 @@ export default class Blog extends React.Component {
                   <article key={post_idx} className="post post-card">
                     <div className="post-inside">
                       {_.get(post, 'frontmatter.thumb_img_path', null) && (
-                      <Link className="post-thumbnail" to={safePrefix(_.get(post, 'url', null))}>
-                        <img src={safePrefix(_.get(post, 'frontmatter.thumb_img_path', null))} alt={_.get(post, 'frontmatter.title', null)} />
+                      <Link className="post-thumbnail" to={withPrefix(_.get(post, 'url', null))}>
+                        <img src={withPrefix(_.get(post, 'frontmatter.thumb_img_path', null))} alt={_.get(post, 'frontmatter.title', null)} />
                       </Link>
                       )}
                       <header className="post-header">
-                        <h2 className="post-title"><Link to={safePrefix(_.get(post, 'url', null))} rel="bookmark">{_.get(post, 'frontmatter.title', null)}</Link></h2>
+                        <h2 className="post-title"><Link to={withPrefix(_.get(post, 'url', null))} rel="bookmark">{_.get(post, 'frontmatter.title', null)}</Link></h2>
                       </header>
                       {_.get(post, 'frontmatter.excerpt', null) && (
                       <div className="post-content">
